@@ -1,6 +1,14 @@
 import nodemailer from "nodemailer";
+import { prisma } from "./prismaDB";
+import { Prisma } from "@prisma/client";
 
 type EmailPayload = {
+  to: string;
+  subject: string;
+  html: string;
+};
+
+type EmailSavePayload = {
   to: string;
   subject: string;
   html: string;
@@ -17,6 +25,7 @@ const smtpOptions = {
   },
 };
 
+
 export const sendEmail = async (data: EmailPayload) => {
   const transporter = nodemailer.createTransport({
     ...smtpOptions,
@@ -27,3 +36,34 @@ export const sendEmail = async (data: EmailPayload) => {
     ...data,
   });
 };
+
+
+type MessageData = {
+  fullName:string;
+  email:string;
+  phone:string;
+  message:string;
+};
+
+export async function saveMessage({ fullName, email, phone, message }: MessageData): Promise<Prisma.MessageCreateInput> {
+  try {
+    const saved = await prisma.message.create({
+      data: {
+        fullName,
+        email,
+        phone,
+        message
+      },
+    });
+
+    if (saved) {
+      console.log(saved,"saved");
+      return saved;
+    } else {
+      throw new Error(saved);
+    }
+  } catch (error) {
+    console.error('Error saving message:', error);
+    throw new Error('Error saving message');
+  }
+}

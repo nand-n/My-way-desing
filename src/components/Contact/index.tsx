@@ -1,4 +1,43 @@
+'use client'
+import axios from "axios";
+import { useState } from "react";
+
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+
+    const emailData = {
+      to: formData.email,
+      subject: `Thank you for contacting us, ${formData.fullName}`,
+      html: `<p>Dear ${formData.fullName},</p><p>Thank you for reaching out to us. Here is a copy of your message:</p><p>${formData.message}</p><p>We will get back to you shortly.</p>`,
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message
+    };
+
+    try {
+      await axios.post('/api/send-email', emailData);
+      console.log('Email sent successfully');
+    } catch (error) {
+      console.error('Error sending email:', error);
+    }
+  };
   return (
     <section id="contact" className="relative py-20 md:py-[120px]">
       <div className="absolute left-0 top-0 -z-[1] h-full w-full dark:bg-dark"></div>
@@ -33,7 +72,7 @@ const Contact = () => {
                       Our Location
                     </h3>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      Ethiopa, Adiss Abeba
+                      Ethiopa, Adama
                     </p>
                   </div>
                 </div>
@@ -53,10 +92,7 @@ const Contact = () => {
                       How Can We Help?
                     </h3>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      nahom@fetan.et
-                    </p>
-                    <p className="mt-1 text-base text-body-color dark:text-dark-6">
-                      nahom@fetan.et
+                      nardosd53@gmail.com
                     </p>
                   </div>
                 </div>
@@ -72,7 +108,7 @@ const Contact = () => {
               <h3 className="mb-8 text-2xl font-semibold text-dark dark:text-white md:text-[28px] md:leading-[1.42]">
                 Send us a Message
               </h3>
-              <form>
+              <form onSubmit={handleSubmit} >
                 <div className="mb-[22px]">
                   <label
                     htmlFor="fullName"
@@ -83,6 +119,7 @@ const Contact = () => {
                   <input
                     type="text"
                     name="fullName"
+                    onChange={handleChange}
                     placeholder="Adam Gelius"
                     className="w-full border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-dark placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-white"
                   />
@@ -97,6 +134,7 @@ const Contact = () => {
                   <input
                     type="email"
                     name="email"
+                    onChange={handleChange}
                     placeholder="example@yourmail.com"
                     className="w-full border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-dark placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-white"
                   />
@@ -112,6 +150,7 @@ const Contact = () => {
                     type="text"
                     name="phone"
                     placeholder="+885 1254 5211 552"
+                    onChange={handleChange}
                     className="w-full border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-dark placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-white"
                   />
                 </div>
@@ -124,8 +163,9 @@ const Contact = () => {
                   </label>
                   <textarea
                     name="message"
-                    rows={1}
+                    rows={3}
                     placeholder="type your message here"
+                    onChange={handleChange}
                     className="w-full resize-none border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-dark placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-white"
                   ></textarea>
                 </div>

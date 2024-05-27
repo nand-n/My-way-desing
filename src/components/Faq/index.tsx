@@ -7,8 +7,8 @@ const Faq = () => {
       <div className="container">
         <SectionTitle
           subtitle="FAQ"
-          title="Any Questions? Answered"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title="How Does Crochet Clothing Work?"
+          paragraph="Learn more about the art of crochet and how our handcrafted pieces come to life."
           width="640px"
           center
         />
@@ -16,37 +16,36 @@ const Faq = () => {
         <div className="-mx-4 mt-[60px] flex flex-wrap lg:mt-20">
           <div className="w-full px-4 lg:w-1/2">
             <SingleFaq
-              question="How to use TailGrids?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="What is crochet clothing?"
+              answer="Crochet clothing is made by interlocking loops of yarn with a crochet hook to create various garments such as sweaters, hats, and scarves. Each piece is handcrafted, making it unique."
             />
             <SingleFaq
-              question="How to download icons from LineIcons?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="What materials are used in crochet clothing?"
+              answer="We use a variety of high-quality yarns, including cotton, wool, and synthetic blends, to create durable and comfortable crochet garments. Each material is chosen based on its suitability for the specific item."
             />
             <SingleFaq
-              question="Is GrayGrids part of UIdeck?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="How long does it take to make a piece of crochet clothing?"
+              answer="The time required to create a piece of crochet clothing varies depending on its complexity and size. Simple items like hats or scarves can take a few hours, while more intricate designs like sweaters may take several days."
             />
           </div>
 
           <div className="w-full px-4 lg:w-1/2">
             <SingleFaq
-              question="Can I use this template for commercial project?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="Can crochet clothing be customized?"
+              answer="Yes, we offer customization options such as choosing the color, size, and type of yarn. Customers can request personalized designs to ensure their crochet clothing is tailored to their preferences."
             />
             <SingleFaq
-              question="Do you have plan to releasing Play Pro?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="How should I care for my crochet clothing?"
+              answer="To maintain the quality of your crochet clothing, hand wash it with mild detergent and lay it flat to dry. Avoid wringing or hanging, as this can distort the shape."
             />
             <SingleFaq
-              question="Where and how to host this template?"
-              answer="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+              question="What are the benefits of crochet clothing?"
+              answer="Crochet clothing is known for its unique texture, versatility, and comfort. Handmade crochet pieces are often more durable and eco-friendly compared to mass-produced garments."
             />
           </div>
         </div>
       </div>
-
-      <div>
+        <div>
         <span className="absolute left-4 top-4 -z-[1]">
           <svg
             width="48"

@@ -12,7 +12,7 @@ export const POST = async (request: Request) => {
   const user = await prisma.user.findUnique({
     where: {
       passwordResetToken: token,
-      passwordResetTokenExp: {
+      passwordResetTokenExp: { 
         gte: new Date(),
       },
     },

@@ -64,6 +64,17 @@ model Message {
   message         String
   fullName         String
   createdAt       DateTime  @default(now())
+}
 
-  
+model Trainee {
+  id            Int     @id @default(autoincrement())
+  name          String
+  email         String? @unique
+  education     String
+  address       String
+  phone         Int?
+  accountNumber Int?
+  bankType      String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

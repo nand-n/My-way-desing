@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Trainee" ALTER COLUMN "phone" SET DATA TYPE TEXT,
+ALTER COLUMN "accountNumber" SET DATA TYPE TEXT;

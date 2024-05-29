@@ -9,6 +9,7 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import ClickOutside from "../ClickOutSide/ClickOutside";
 import { InsuranceOutlined } from '@ant-design/icons';
 import { StockOutlined } from '@ant-design/icons';
+import { AppstoreOutlined } from '@ant-design/icons';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -93,6 +94,11 @@ const menuGroups = [
         icon: <StockOutlined />,
         label: "Inventory",
         route: "/dashboard/inventory",
+      }, 
+      {
+        icon: <AppstoreOutlined />,
+        label: "Products",
+        route: "/dashboard/products",
       }, 
       {
         icon: (

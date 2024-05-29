@@ -8,6 +8,7 @@ import SidebarItem from "@/components/Sidebar/SidebarItem";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import ClickOutside from "../ClickOutSide/ClickOutside";
 import { InsuranceOutlined } from '@ant-design/icons';
+import { StockOutlined } from '@ant-design/icons';
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -88,6 +89,11 @@ const menuGroups = [
         label: "Trainees",
         route: "/dashboard/trainees",
       },
+      {
+        icon: <StockOutlined />,
+        label: "Inventory",
+        route: "/dashboard/inventory",
+      }, 
       {
         icon: (
           <svg

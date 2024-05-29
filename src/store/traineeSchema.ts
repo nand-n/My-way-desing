@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const traineeSchema = z.object({
-  id: z.number(),
+  id: z.string().uuid().optional(),
   name: z.string().min(2, "Name is required"),
   email: z.string().email().optional(),
   education: z.string().min(2, "Education is required"),

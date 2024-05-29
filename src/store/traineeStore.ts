@@ -7,7 +7,7 @@ interface TraineeState {
   fetchTrainees: () => Promise<void>;
   addTrainee: (trainee: TraineeSchema) => Promise<void>;
   updateTrainee: (trainee: TraineeSchema) => Promise<void>;
-  deleteTrainee: (id: number) => Promise<void>;
+  deleteTrainee: (id: string) => Promise<void>;
 }
 
 export const useTraineeStore = create<TraineeState>((set) => ({
@@ -26,7 +26,7 @@ export const useTraineeStore = create<TraineeState>((set) => ({
       trainees: state.trainees.map((t) => (t.id === trainee.id ? response.data : t)),
     }));
   },
-  deleteTrainee: async (id: number) => {
+  deleteTrainee: async (id: string) => {
     await axios.delete('/api/trainees', { data: { id } });
     set((state) => ({
       trainees: state.trainees.filter((trainee) => trainee.id !== id),

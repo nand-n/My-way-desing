@@ -1,94 +1,6 @@
-// import React from 'react';
-// import { useForm } from 'react-hook-form';
-// import { zodResolver } from '@hookform/resolvers/zod';
-// import { Modal, Input } from 'antd';
-// import { TraineeSchema, traineeSchema } from '@/store/traineeSchema';
-
-// interface TraineeModalProps {
-//   visible: boolean;
-//   onCancel: () => void;
-//   onOk: (data: TraineeSchema) => void;
-//   initialValues: TraineeSchema | null;
-// }
-
-// const TraineeModal: React.FC<TraineeModalProps> = ({ visible, onCancel, onOk, initialValues }) => {
-//   const {
-//     handleSubmit,
-//     register,
-//     formState: { errors },
-//     reset,
-//     getValues
-//   } = useForm<TraineeSchema>({
-//     resolver: zodResolver(traineeSchema),
-//     defaultValues: initialValues || {id:1 , name: '', education: '', address: '' },
-//   });
-//   console.log(getValues(), "All Values");
-//   React.useEffect(() => {
-//     reset(initialValues || { id:1, name: '', education: '', address: '' });
-//   }, [initialValues, reset]);
-
-//   console.log(errors,"error");
-
-//   return (
-//     <Modal title="Trainee" open={visible} onCancel={onCancel} onOk={handleSubmit(onOk)}>
-//       <form>
-//         <div>
-//           <label>Name</label>
-//           <Input {...register('name')} />
-//           {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
-//         </div>
-//         <div>
-//           <label>Email</label>
-//           <Input {...register('email')} />
-//           {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
-//         </div>
-//         <div>
-//           <label>Education</label>
-//           <Input {...register('education')} />
-//           {errors.education && <p className='text-red-500'>{errors.education.message}</p>}
-//         </div>
-//         <div>
-//           <label>Address</label>
-//           <Input {...register('address')} />
-//           {errors.address && <p className='text-red-500'>{errors.address.message}</p>}
-//         </div>
-//         <div>
-//           <label>Phone</label>
-//           <Input {...register('phone')} />
-//           {errors.phone && <p className='text-red-500'>{errors.phone.message}</p>}
-//         </div>
-//         <div>
-//           <label>Account Number</label>
-//           <Input {...register('accountNumber')} />
-//           {errors.accountNumber && <p className='text-red-500'>{errors.accountNumber.message}</p>}
-//         </div>
-//         <div>
-//           <label>Bank Type</label>
-//           <Input {...register('bankType')} />
-//           {errors.bankType && <p className='text-red-500'>{errors.bankType.message}</p>}
-//         </div>
-//       </form>
-//     </Modal>
-//   );
-// };
-
-// export default TraineeModal;
-
-
 import React, { useEffect } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { Modal, Input } from 'antd';
-
-interface TraineeSchema {
-  id: number;
-  name: string;
-  email: string;
-  education: string;
-  address: string;
-  phone: number;
-  accountNumber: number;
-  bankType: string;
-}
+import { Modal, Form, Input } from 'antd';
+import { TraineeSchema } from '@/store/traineeSchema';
 
 interface TraineeModalProps {
   visible: boolean;
@@ -98,21 +10,32 @@ interface TraineeModalProps {
 }
 
 const TraineeModal: React.FC<TraineeModalProps> = ({ visible, onCancel, onOk, initialValues }) => {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    reset,
-  } = useForm<TraineeSchema>({
-    defaultValues: initialValues || { id: 1, name: '', email: '', education: '', address: '', phone: 0, accountNumber: 0, bankType: '' },
-  });
+  const [form] = Form.useForm();
 
   useEffect(() => {
-    reset(initialValues || { id: 1, name: '', email: '', education: '', address: '', phone: 0, accountNumber: 0, bankType: '' });
-  }, [initialValues, reset]);
+    if (visible) {
+      form.resetFields();
+      if (initialValues) {
+        form.setFieldsValue(initialValues);
+      }
+    }
+  }, [initialValues, form, visible]);
 
-  const onSubmit: SubmitHandler<TraineeSchema> = (data) => {
-    onOk(data);
+  const handleOk = () => {
+    form
+      .validateFields()
+      .then((values) => {
+        const data = {
+          ...values,
+          phone:  Number(values.phone),
+          accountNumber:  Number(values.accountNumber),
+        };
+        onOk(data);
+        form.resetFields();
+      })
+      .catch((info) => {
+        console.log('Validate Failed:', info);
+      });
   };
 
   return (
@@ -120,45 +43,70 @@ const TraineeModal: React.FC<TraineeModalProps> = ({ visible, onCancel, onOk, in
       title="Trainee"
       open={visible}
       onCancel={onCancel}
-      onOk={handleSubmit(onSubmit)}
+      onOk={handleOk}
     >
-      <form>
-        <div>
-          <label>Name</label>
-          <Input {...register('name', { required: 'Name is required' })} />
-          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-        </div>
-        <div>
-          <label>Email</label>
-          <Input {...register('email', { required: 'Email is required' })} />
-          {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-        </div>
-        <div>
-          <label>Education</label>
-          <Input {...register('education', { required: 'Education is required' })} />
-          {errors.education && <p className="text-red-500">{errors.education.message}</p>}
-        </div>
-        <div>
-          <label>Address</label>
-          <Input {...register('address', { required: 'Address is required' })} />
-          {errors.address && <p className="text-red-500">{errors.address.message}</p>}
-        </div>
-        <div>
-          <label>Phone</label>
-          <Input {...register('phone', { required: 'Phone number is required' })} />
-          {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
-        </div>
-        <div>
-          <label>Account Number</label>
-          <Input {...register('accountNumber', { required: 'Account number is required' })} />
-          {errors.accountNumber && <p className="text-red-500">{errors.accountNumber.message}</p>}
-        </div>
-        <div>
-          <label>Bank Type</label>
-          <Input {...register('bankType', { required: 'Bank type is required' })} />
-          {errors.bankType && <p className="text-red-500">{errors.bankType.message}</p>}
-        </div>
-      </form>
+      <Form
+        form={form}
+        layout="vertical"
+        initialValues={initialValues || { id: '', name: '', email: '', education: '', address: '', phone: '', accountNumber: '', bankType: '' }}
+      >
+        <Form.Item
+          name="name"
+          label="Name"
+          rules={[{ required: true, message: 'Please input the name' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+           name="email"
+           label="Email"
+           rules={[
+             { required: false, message: 'Please input the email' },
+             { type: 'email', message: 'Please enter a valid email address' }
+           ]}
+         >
+         <Input type='email' />
+      </Form.Item>
+        <Form.Item
+          name="education"
+          label="Education"
+          rules={[{ required: true, message: 'Please input the education' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="address"
+          label="Address"
+          rules={[{ required: true, message: 'Please input the address' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="phone"
+          label="Phone"
+          rules={[
+            { required: true, message: 'Please input the phone number' },
+            { pattern: /^\d{10}$/, message: 'Please enter a valid 10-digit phone number' },
+            
+          ]}
+        >
+          <Input type="tel"  pattern="[0-9]*"/>
+        </Form.Item>
+        <Form.Item
+          name="accountNumber"
+          label="Account Number"
+          rules={[{ required: false, message: 'Please input the account number',pattern: /^\d+$/  }]}
+        >
+           <Input type="number" />
+        </Form.Item>
+        <Form.Item
+          name="bankType"
+          label="Bank Type"
+          rules={[{ required: false, message: 'Please input the bank type' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Form>
     </Modal>
   );
 };

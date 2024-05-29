@@ -1,26 +1,3 @@
-// import CardDataStats from "@/components/CardDataStats/CardDataStats";
-// import Breadcrumb from "@/components/Common/Breadcrumb";
-// import DefaultLayout from "@/components/Layouts/DefaultLaout";
-// import { Metadata } from "next";
-
-// export const metadata: Metadata = {
-//   title:
-//     "Trainees Page | Treaining",
-//   description: "This is Training page description",
-// };
-
-// const TraineesPage = () => {
-//   return (
-//     <DefaultLayout>
-//       <Breadcrumb pageName="Trainees" isDashboard />
-//     </DefaultLayout>
-//   );
-// };
-
-// export default TraineesPage;
-
-
-
 'use client'
 import React, { useEffect, useState } from 'react';
 import { Button, Space } from 'antd';
@@ -57,7 +34,7 @@ const TraineesPage = () => {
     setIsModalVisible(true);
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string) => {
     deleteTrainee(id);
   };
 
@@ -65,7 +42,6 @@ const TraineesPage = () => {
     if (currentTrainee) {
       updateTrainee({ ...currentTrainee, ...values });
     } else {
-      console.log(values,"vals");
       addTrainee(values);
     }
     setIsModalVisible(false);
@@ -78,18 +54,18 @@ const TraineesPage = () => {
   return (
     <DefaultLayout>
       <Breadcrumb pageName="Trainees" isDashboard />
-      <div className="mt-4"></div> 
+      <div className="mt-4"/> 
       <Button type="primary" onClick={handleAdd}>
         Add Trainee
       </Button>
       <Space />
-      <div className="h-4"></div>
+      <div className="h-4"/>
       <TraineeTable trainees={trainees} onEdit={handleEdit} onDelete={handleDelete} />
       <TraineeModal
         visible={isModalVisible}
         onCancel={handleCancel}
         onOk={handleOk}
-        initialValues={currentTrainee}
+        initialValues={currentTrainee|| null}
       />
     </DefaultLayout>
   );

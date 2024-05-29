@@ -1,12 +1,13 @@
 import React from 'react';
-import { Table, Button, Space, Popconfirm } from 'antd';
+import { Table, Button, Space, Popconfirm, message } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { TraineeSchema } from '@/store/traineeSchema';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 interface TraineeTableProps {
   trainees: TraineeSchema[];
   onEdit: (trainee: TraineeSchema) => void;
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 const TraineeTable: React.FC<TraineeTableProps> = ({ trainees, onEdit, onDelete }) => {
@@ -52,16 +53,23 @@ const TraineeTable: React.FC<TraineeTableProps> = ({ trainees, onEdit, onDelete 
       render: (_, record: TraineeSchema) => (
         <Space size="middle">
           <Button type="link" onClick={() => onEdit(record)}>
-            Edit
+          <EditOutlined />
           </Button>
           <Popconfirm
             title="Are you sure to delete this trainee?"
-            onConfirm={() => onDelete(record.id)}
+            onConfirm={() => {
+              if (record.id) {
+                onDelete(record.id);
+              } else {
+                console.error('ID is undefined');
+                message.error("ID is undefined")
+              }
+            }}
             okText="Yes"
             cancelText="No"
           >
             <Button type="link" danger>
-              Delete
+            <DeleteOutlined />
             </Button>
           </Popconfirm>
         </Space>
@@ -69,7 +77,9 @@ const TraineeTable: React.FC<TraineeTableProps> = ({ trainees, onEdit, onDelete 
     },
   ];
 
-  return <Table columns={columns} dataSource={trainees} rowKey="id" />;
+  return <Table  style={ {overflowX: 'auto'}}
+  
+  rootClassName='bg-white text-black dark:bg-dark dark:text-white'  className='bg-white text-black dark:bg-dark dark:text-white' columns={columns} dataSource={trainees} rowKey="id" />;
 };
 
 export default TraineeTable;

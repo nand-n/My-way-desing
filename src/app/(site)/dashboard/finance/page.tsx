@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import Finance from "@/components/Finance/FinanceComponent";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import { Metadata } from "next";
 
@@ -12,8 +13,8 @@ const FinancePage = () => {
   return (
     <>
     <DefaultLayout>
-    <Breadcrumb pageName="Finance Page" />
-
+    <Breadcrumb pageName="Finance Page" isDashboard />
+      <Finance />
     </DefaultLayout>
 
 

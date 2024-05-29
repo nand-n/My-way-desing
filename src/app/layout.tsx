@@ -11,6 +11,7 @@ import ToasterContext from "./api/contex/ToasetContex";
 import { useEffect, useState } from "react";
 import PreLoader from "@/components/Common/PreLoader";
 import { usePathname } from "next/navigation";
+import { Providers } from "./providers";
 
 export default function RootLayout({
   children,
@@ -42,7 +43,7 @@ export default function RootLayout({
             >
               <ToasterContext />
               {!isDashboard && <Header />}
-              {children}
+              <Providers>{children}</Providers>
               {!isDashboard && <Footer />}
               <ScrollToTop />
             </ThemeProvider>

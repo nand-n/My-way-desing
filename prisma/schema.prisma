@@ -67,7 +67,7 @@ model Message {
 }
 
 model Trainee {
-  id            Int     @id @default(autoincrement())
+  id            String     @id @default(uuid())
   name          String
   email         String? @unique
   education     String

@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { Tabs, Tab } from "@/components/Tabs";
 import { Button } from "antd";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
+import AllProducts from "@/components/Products/AllProducts";
 
 export const metadata: Metadata = {
   title: "Products Page | Overview",
@@ -17,7 +18,9 @@ const ProductsPage = () => {
           <Breadcrumb pageName="Products" isDashboard />
         <Tabs>
           <Tab title="All Products ">
-            <TableOne />
+            <>
+            <AllProducts />
+            </>
           </Tab>
           <Tab title="Stock Products">
             <></>

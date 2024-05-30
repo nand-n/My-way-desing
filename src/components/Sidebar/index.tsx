@@ -163,7 +163,9 @@ const menuGroups = [
         label: "Settings",
         route: "#",
         children: [
-          { label: "Date Settings", route: "/settings/dates" },
+          { label: "Date Settings", route: "/dashboard/settings/dates" },
+          { label: "Accounting Settings", route: "/dashboard/settings/accounting" },
+
         ],
       },
       

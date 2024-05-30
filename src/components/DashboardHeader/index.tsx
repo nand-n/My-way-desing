@@ -10,7 +10,7 @@ const Header = (props: {
   setSidebarOpen: (arg0: boolean) => void;
 }) => {
   return (
-    <header className="sticky top-0 z-999 flex w-full border-b border-stroke bg-white  dark:bg-dark">
+    <header className="sticky top-0  flex w-full z-[99999] border-b border-stroke bg-white  dark:bg-dark">
       <div className="flex flex-grow items-center justify-between px-4 py-5 shadow-2 md:px-5 2xl:px-10">
         <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
           {/* <!-- Hamburger Toggle BTN --> */}
@@ -78,7 +78,7 @@ const Header = (props: {
         <div className="flex items-center justify-normal gap-2 2xsm:gap-4 lg:w-full lg:justify-between xl:w-auto xl:justify-normal">
           <ul className="flex items-center gap-2 2xsm:gap-4">
             {/* <!-- Search Form --> */}
-            <SearchForm />
+            {/* <SearchForm /> */}
             {/* <!-- Search Form --> */}
 
             {/* <!-- Dark Mode Toggle --> */}

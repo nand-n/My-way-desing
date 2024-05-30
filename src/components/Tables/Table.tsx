@@ -59,7 +59,21 @@ const TableOne = () => {
       />
 
       <div className="flex flex-col">
-        <TableHeader />
+        {/* <TableHeader /> */}
+         <div className="grid grid-cols-3 rounded-sm  items-start dark:bg-black sm:grid-cols-4 border-y-2">
+           <div className="p-2.5 xl:p-5 border-x">
+             <h5 className="text-sm font-medium uppercase xsm:text-base">Full Name</h5>
+           </div>
+           <div className="p-2.5 text-start xl:p-5 border-r">
+             <h5 className="text-sm font-medium uppercase xsm:text-base">Email</h5>
+           </div>
+           <div className="p-2.5 text-start xl:p-5 border-r">
+             <h5 className="text-sm font-medium uppercase xsm:text-base">Phone</h5>
+           </div>
+           <div className="hidden p-2.5 text-start sm:block xl:p-5 border-r">
+             <h5 className="text-sm font-medium uppercase xsm:text-base ">Message</h5>
+           </div>
+         </div>
         {currentMessages?.map((message: { fullName: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; email: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; phone: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; message: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }, index: Key | null | undefined) => (
           <div
             className={`grid grid-cols-3 sm:grid-cols-4 border-b ${

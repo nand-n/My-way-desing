@@ -1,6 +1,7 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
+import DateSettings from "@/components/DateSettings/DateSettings";
 
 export const metadata: Metadata = {
   title: "Date Page | Overview",

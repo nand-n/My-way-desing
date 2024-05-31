@@ -5,7 +5,7 @@ interface ImageUploaderProps {
   onUploadSuccess: (url: string) => void;
 }
 
-export function ImageUploader({ onUploadSuccess }: ImageUploaderProps) {
+export function ImageUploader({onUploadSuccess  }: ImageUploaderProps) {
   return (
     <CldUploadWidget
       signatureEndpoint="/api/upload-image"

@@ -27,7 +27,7 @@ const ListofContacts = () => {
       }
     };
     fetchData();
-  }, [setFilteredMessages]);
+  }, [setFilteredMessages,setFilteredMessages,setCurrentPage]);
 
   useEffect(() => {
     const lowerCaseQuery = searchQuery.toLowerCase();

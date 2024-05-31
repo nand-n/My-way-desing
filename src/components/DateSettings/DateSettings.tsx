@@ -34,7 +34,7 @@ const DateSettings = () => {
     );
     setFilteredDates(filtered);
     setCurrentPage(1);
-  }, [searchQuery]);
+  }, [searchQuery,fetchDates]);
 
   const indexOfLastDate = currentPage * datesPerPage;
   const indexOfFirstDate = indexOfLastDate - datesPerPage;

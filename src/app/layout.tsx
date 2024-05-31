@@ -1,5 +1,4 @@
 "use client";
-
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -25,12 +24,13 @@ export default function RootLayout({
     setTimeout(() => setLoading(false), 1000);
   }, []);
 
-  // Determine if the current route is the dashboard
   const isDashboard = pathname.startsWith("/dashboard");
 
   return (
     <html suppressHydrationWarning={true} className="!scroll-smooth" lang="en">
-      <head />
+      <head >
+      <link rel="icon" href="/images/myway/su.svg" />
+      </head>
       <body>
         {loading ? (
           <PreLoader />

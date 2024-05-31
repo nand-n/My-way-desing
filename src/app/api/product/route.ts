@@ -2,17 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import Stripe from 'stripe';
 import { prisma } from '@/utils/prismaDB';
-import cloudinary from 'cloudinary';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2023-10-16',
 });
 
-// cloudinary.v2.config({
-//   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-//   api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
-//   api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_SECRET,
-// });
+
 const productSchema = z.object({
   id: z.string().uuid().optional(),
   title: z.string(),
@@ -55,7 +50,7 @@ export async function POST(request: NextRequest) {
       product: stripeProduct.id,
     });
 
-    return NextResponse.json({ product: newProduct, stripeProduct, stripePrice });
+    return NextResponse.json({ ...newProduct });
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json({ error: error.message }, { status: 400 });

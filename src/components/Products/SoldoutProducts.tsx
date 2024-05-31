@@ -1,15 +1,10 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Table from '../Common/GenericTable';
 import { Product } from '@prisma/client';
 import { useProductStore } from '@/store/productStore';
-import { Button } from 'antd';
-import { PlusCircleOutlined } from '@ant-design/icons';
-import ProductModal from './ProductModal';
 
-const AllProducts = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
+const SoldoutProducts = () => {
   const products = useProductStore((state) => state.products);
   const searchQuery = useProductStore((state) => state.searchQuery);
   const setSearchQuery = useProductStore((state) => state.setSearchQuery);
@@ -37,7 +32,7 @@ const AllProducts = () => {
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct).filter(products => products.itemCount ==0);
 
   const columns = [
     { header: 'Image', accessor: (product: Product) => product.image ,isImage:true},
@@ -50,11 +45,6 @@ const AllProducts = () => {
 
   return (
     <>
-      <div className="grid items-center justify-end mb-4 gap-2">
-        <Button icon={<PlusCircleOutlined />} type="primary" onClick={() => setIsModalVisible(true)}>
-          Add Product
-        </Button>
-      </div>
       <Table
         data={currentProducts}
         columns={columns}
@@ -65,9 +55,8 @@ const AllProducts = () => {
         itemsPerPage={productsPerPage}
         totalItems={filteredProducts.length}
       />
-      <ProductModal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)} />
     </>
   );
 };
 
-export default AllProducts;
+export default SoldoutProducts;

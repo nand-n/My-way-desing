@@ -40,7 +40,7 @@ const Table = <T,>({
       />
 
       <div className="flex flex-col">
-        <div className="grid grid-cols-5  rounded-sm items-start dark:bg-black sm:grid-cols-5 border-y-2">
+        <div className={`grid grid-cols-${columns.length }  rounded-sm items-start dark:bg-black sm:grid-cols-${columns.length} border-y-2`}>
           {columns.map((col, index) => (
             <div key={index} className="p-2.5 xl:p-5 border-x">
               <h5 className="text-sm font-medium uppercase xsm:text-base">{col.header}</h5>
@@ -50,7 +50,7 @@ const Table = <T,>({
         {data.map((item, index) => (
           <div
             key={index}
-            className={`grid grid-cols-5 sm:grid-cols-5 border-b ${
+            className={`grid grid-cols-${columns.length} sm:grid-cols-${columns.length} border-b ${
               index === data.length - 1 ? '' : 'border-b border-stroke dark:border-dark-3'
             }`}
           >

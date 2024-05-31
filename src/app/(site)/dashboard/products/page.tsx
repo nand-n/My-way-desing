@@ -5,6 +5,7 @@ import { Tabs, Tab } from "@/components/Tabs";
 import { Button } from "antd";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import AllProducts from "@/components/Products/AllProducts";
+import SoldoutProducts from "@/components/Products/SoldoutProducts";
 
 export const metadata: Metadata = {
   title: "Products Page | Overview",
@@ -22,11 +23,8 @@ const ProductsPage = () => {
             <AllProducts />
             </>
           </Tab>
-          <Tab title="Stock Products">
-            <></>
-          </Tab>
           <Tab title="Soldout Products">
-            <></>
+          <SoldoutProducts />
           </Tab>
         </Tabs>
       </DefaultLayout>

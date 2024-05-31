@@ -1,4 +1,5 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import ListofContacts from "@/components/Contact/ListOfContacts";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import TableOne from "@/components/Tables/Table";
 import { Metadata } from "next";
@@ -13,7 +14,8 @@ const OverviewPage = () => {
   return (
     <DefaultLayout>
       <Breadcrumb pageName="List of Contacts" isDashboard/>
-      <TableOne />
+      {/* <TableOne /> */}
+      <ListofContacts />
     </DefaultLayout>
   );
 };

@@ -4,7 +4,6 @@ import { Modal, Form, Input, InputNumber, Button, Upload, message } from 'antd';
 import { useProductStore } from '@/store/productStore';
 import { Product } from '@prisma/client';
 import { useState } from 'react';
-import cloudinary from '@/utils/claudinary';
 import { ImageUploader } from '../ImageUpload/image-uploader';
 import CldImage from '../Common/CldImage';
 
@@ -27,7 +26,7 @@ const ProductModal = ({ isVisible, onClose }: ProductModalProps) => {
       onClose();
       form.resetFields();
       setImageUrl(null);
-      setIsImageUploaded(false); // Reset image upload state
+      setIsImageUploaded(false);
     } catch (error: any) {
       console.error('Error adding product:', error);
       message.error('Error adding product. Please try again.');

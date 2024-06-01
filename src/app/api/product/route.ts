@@ -99,29 +99,3 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: 'Unknown error occurred' }, { status: 400 });
   }
 }
-
-// export async function createCheckoutSession(request: NextRequest) {
-//   try {
-//     const data = await request.json();
-//     const { priceId } = data;
-
-//     const session = await stripe.checkout.sessions.create({
-//       line_items: [
-//         {
-//           price: priceId,
-//           quantity: 1,
-//         },
-//       ],
-//       mode: 'subscription',
-//       success_url: `${process.env.SITE_URL!}/success`,
-//       cancel_url: `${process.env.SITE_URL!}/cancel`,
-//     });
-
-//     return NextResponse.json({ url: session.url });
-//   } catch (error) {
-//     if (error instanceof Error) {
-//       return NextResponse.json({ error: error.message }, { status: 400 });
-//     }
-//     return NextResponse.json({ error: 'Unknown error occurred' }, { status: 400 });
-//   }
-// }

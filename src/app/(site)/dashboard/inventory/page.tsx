@@ -1,8 +1,6 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
-import TableOne from "@/components/Tables/Table";
 import { Metadata } from "next";
 import { Tabs, Tab } from "@/components/Tabs";
-import { Button } from "antd";
 import DefaultLayout from "@/components/Layouts/DefaultLaout";
 import InventoryOverview from "@/components/Inventory/InventoryOverview";
 import StockItems from "@/components/Inventory/Stock";

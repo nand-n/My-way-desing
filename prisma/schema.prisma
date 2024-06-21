@@ -118,3 +118,19 @@ model Area {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+model NeededItem {
+  id          String      @id @default(uuid())
+  name        String
+  priority    Priority
+  quantity    Int
+  area        String
+  price       Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

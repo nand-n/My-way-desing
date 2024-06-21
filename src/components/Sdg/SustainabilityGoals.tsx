@@ -46,7 +46,7 @@ const SustainabilityGoals: React.FC = () => {
   return (
     <section
       id="sustainability-goals"
-      className="overflow-hidden bg-gray-1 pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]"
+      className="overflow-hidden bg-gray-1 pb-12 pt-20 text-black dark:text-white dark:bg-dark lg:pb-[90px] lg:pt-[120px]"
     >
       <div className="container">
         <div className="mb-[60px]">
